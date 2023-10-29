@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dataset>
+    <supplier
+            ID_Supplier="1"
+            code="a002"
+           label="test label"
+    />
+</dataset>
+
+
