@@ -90,8 +90,6 @@ public class SupplierServiceImplTest {
         assertEquals(1L, supplier.getIdSupplier());
         assertEquals("a002", supplier.getCode());
         assertEquals("test label", supplier.getLabel());
-
-
     }
 
 

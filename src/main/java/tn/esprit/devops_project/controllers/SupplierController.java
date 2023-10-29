@@ -2,6 +2,7 @@ package tn.esprit.devops_project.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.devops_project.DTO.SupplierDTO;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.services.Iservices.ISupplierService;
 import java.util.List;
@@ -24,8 +25,8 @@ public class SupplierController {
 	}
 
 	@PostMapping("/supplier")
-	public Supplier addSupplier(@RequestBody Supplier supplier) {
-		return supplierService.addSupplier(supplier);
+	public Supplier addSupplier(@RequestBody SupplierDTO supplierDTO) {
+		return supplierService.addSupplier(SupplierDTO.DTOtoEntity(supplierDTO));
 	}
 
 	@DeleteMapping("/supplier/{supplierId}")
@@ -34,8 +35,8 @@ public class SupplierController {
 	}
 
 	@PutMapping("/supplier")
-	public Supplier modifyFournisseur(@RequestBody Supplier supplier) {
-		return supplierService.updateSupplier(supplier);
+	public Supplier modifyFournisseur(@RequestBody SupplierDTO supplierDTO) {
+		return supplierService.updateSupplier(SupplierDTO.DTOtoEntity(supplierDTO));
 	}
 
 }
