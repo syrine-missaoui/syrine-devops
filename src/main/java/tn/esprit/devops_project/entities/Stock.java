@@ -20,4 +20,13 @@ public class Stock implements Serializable {
     String title;
     @OneToMany(mappedBy = "stock")
     private Set<Product> products;
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "idStock=" + idStock +
+                ", title='" + title + '\'' +
+                ", products=" + products +
+                '}';
+    }
 }

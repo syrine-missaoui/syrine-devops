@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dataset>
+
+    <product
+            ID_PRODUCT="1"
+            TITLE="product1"
+            PRICE="10.0"
+            QUANTITY="100"
+            CATEGORY="ELECTRONICS"
+
+    />
+    <product
+            ID_PRODUCT="2"
+            TITLE="Product2"
+            PRICE="15.0"
+            QUANTITY="50"
+            CATEGORY="CLOTHING"
+
+    />
+
+</dataset>
+
+
+

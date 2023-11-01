@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @ActiveProfiles("test")
-public class SupplierServiceImplTest {
+ class SupplierServiceImplTest {
 
     @Autowired
     private SupplierServiceImpl supplierService;
@@ -51,7 +51,7 @@ public class SupplierServiceImplTest {
 
     @Test
     @DatabaseSetup("/data-set/supplier-data.xml")
-    void retrieveAllSuppliers () {
+    void retrieveAllSuppliers() {
         List<Supplier> allSuppliers = supplierService.retrieveAllSuppliers();
         assertNotNull(allSuppliers);
         for (Supplier s : allSuppliers) {
@@ -61,21 +61,22 @@ public class SupplierServiceImplTest {
         assertEquals(1, allSuppliers.size());
         assertTrue(allSuppliers.stream().anyMatch(s -> "a002".equals(s.getCode())));
     }
-    @Test
-    @DatabaseSetup("/data-set/supplier-data.xml")
-    void  updateSupplier(){
-            Supplier supplier = new Supplier();
-                supplier.setIdSupplier(1L);
-                supplier.setCode("55241585");
-                supplier.setLabel("updated success");
-            Supplier result = supplierService.updateSupplier(supplier);
-            Supplier fortesting = supplierService.retrieveSupplier(1L);
-            assertEquals(fortesting,result);
-        }
 
     @Test
     @DatabaseSetup("/data-set/supplier-data.xml")
-    void deleteSupplier (){
+    void updateSupplier() {
+        Supplier supplier = new Supplier();
+        supplier.setIdSupplier(1L);
+        supplier.setCode("55241585");
+        supplier.setLabel("updated success");
+        Supplier result = supplierService.updateSupplier(supplier);
+        Supplier fortesting = supplierService.retrieveSupplier(1L);
+        assertEquals(fortesting, result);
+    }
+
+    @Test
+    @DatabaseSetup("/data-set/supplier-data.xml")
+    void deleteSupplier() {
         supplierService.deleteSupplier(1L);
         List<Supplier> deleteSupplier = supplierService.retrieveAllSuppliers();
 
@@ -85,7 +86,7 @@ public class SupplierServiceImplTest {
 
     @Test
     @DatabaseSetup("/data-set/supplier-data.xml")
-    void  retrieveSupplier() {
+    void retrieveSupplier() {
         Supplier supplier = supplierService.retrieveSupplier(1L);
         assertEquals(1L, supplier.getIdSupplier());
         assertEquals("a002", supplier.getCode());
@@ -93,6 +94,12 @@ public class SupplierServiceImplTest {
     }
 
 
+    @Test
+    @DatabaseSetup("/data-set/supplier-data.xml")
+    void retrievesSupplier_withnullid() {
+        Exception exception = assertThrows(IllegalArgumentException.class,() -> { Supplier supplier = this.supplierService.retrieveSupplier(100L);
+            });
+    }
 }
 
 
