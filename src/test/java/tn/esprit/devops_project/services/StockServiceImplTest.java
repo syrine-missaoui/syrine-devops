@@ -37,6 +37,7 @@ class StockServiceImplTest {
     @Test
     @DatabaseSetup("/data-set/stock-data.xml")
     void addStock() {
+        //add
         final Stock stock = new Stock();
         stock.setTitle("Title");
         this.stockService.addStock(stock);
