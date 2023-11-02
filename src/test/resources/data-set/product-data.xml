@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dataset>
-
     <product
             ID_PRODUCT="1"
             TITLE="product1"
@@ -17,7 +16,6 @@
             CATEGORY="CLOTHING"
 
     />
-
 </dataset>
 
 

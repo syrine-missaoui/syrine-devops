@@ -20,6 +20,7 @@ import tn.esprit.devops_project.entities.ProductCategory;
 import tn.esprit.devops_project.entities.Stock;
 import tn.esprit.devops_project.entities.Supplier;
 import tn.esprit.devops_project.repositories.StockRepository;
+import tn.esprit.devops_project.services.Iservices.IStockService;
 
 
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ class ProductServiceImplTest {
     private ProductServiceImpl productService;
 @Autowired
     private StockRepository stockRepository;
+@Autowired
+StockServiceImpl stockService;
 
     @Test
     @DatabaseSetups({
@@ -62,6 +65,23 @@ class ProductServiceImplTest {
         assertEquals(1,stock.getProducts().size()  );
 
     }
+
+  /*  @Test
+    @DatabaseSetups({
+            @DatabaseSetup("/data-set/product-data.xml"),
+            @DatabaseSetup("/data-set/stock-data.xml")
+    })
+
+    void testRetrieveStockByIdNotFound() {
+        Stock stock = stockRepository.findById(100L).orElseThrow(() -> new NullPointerException("stock not found"));
+        assertNull(stock);
+       *//* Throwable exception = assertThrows(NullPointerException.class, () -> {*//*
+           productService.retreiveProductStock(999L);
+
+
+    }*/
+
+
 
 
     @Test
@@ -108,14 +128,20 @@ class ProductServiceImplTest {
 
 
 
-  /*  @Test
-    @DatabaseSetup("/data-set/product-data.xml")
+    @Test
+    @DatabaseSetups({
+            @DatabaseSetup("/data-set/product-data.xml"),
+            @DatabaseSetup("/data-set/stock-data.xml")
+    })
     void retreiveProductStock() {
-        List<Product> productsInStock = productService.retreiveProductStock(1L);
+      /*  List<Product> productsInStock = productService.retreiveProductStock(1L);
         assertNotNull(productsInStock);
-        assertEquals(3, productsInStock.size());
-
-    }*/
+        assertEquals(3, productsInStock.size());*/
+        Stock stock = stockRepository.findById(1L).orElse(null);
+        assertNotNull(stock);
+        List<Product> products = productService.retreiveProductStock(stock.getIdStock());
+        assertNotNull(products);
+    }
 
     @Test
     @DatabaseSetup("/data-set/product-data.xml")
