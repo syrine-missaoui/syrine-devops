@@ -32,5 +32,15 @@ public class Operator implements Serializable{
 	@OneToMany
 	@JsonIgnore
 	private Set<Invoice> invoices;
-	
+
+	@Override
+	public String toString() {
+		return "Operator{" +
+				"idOperateur=" + idOperateur +
+				", fname='" + fname + '\'' +
+				", lname='" + lname + '\'' +
+				", password='" + password + '\'' +
+				", invoices=" + invoices +
+				'}';
+	}
 }

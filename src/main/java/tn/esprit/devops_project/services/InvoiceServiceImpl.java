@@ -15,6 +15,7 @@ import tn.esprit.devops_project.utils.Constants;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -47,9 +48,9 @@ public class InvoiceServiceImpl implements IInvoiceService {
 	}
 
 	@Override
-	public List<Invoice> getInvoicesBySupplier(Long idSupplier) {
+	public Set<Invoice> getInvoicesBySupplier(Long idSupplier) {
 		Supplier supplier = supplierRepository.findById(idSupplier).orElseThrow(() -> new NullPointerException(Constants.Supplier_not_found));
-		return (List<Invoice>) supplier.getInvoices();
+		return supplier.getInvoices();
 	}
 
 	@Override

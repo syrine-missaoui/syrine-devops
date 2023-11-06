@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dataset>
-<INVOICE idInvoice="1" amountDiscount="100.0" amountInvoice="200.0" dateCreationInvoice="2023-11-01" dateLastModificationInvoice="2023-11-01" archived="false">
+<Invoice ID_INVOICE="1"
+         AMOUNT_DISCOUNT="100.0"
+         AMOUNT_INVOICE="200.0"
+         DATE_CREATION_INVOICE="2023-06-01"
+         DATE_LAST_MODIFICATION_INVOICE="2023-11-01"
+        ARCHIVED="false"/>
 
 
 </dataset>

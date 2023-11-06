@@ -39,6 +39,18 @@ public class Invoice implements Serializable {
     @ManyToOne
     @JsonIgnore
     Supplier supplier;
-
+	@Override
+	public String toString() {
+		return "Invoice{" +
+				"idInvoice=" + idInvoice +
+				", amountDiscount=" + amountDiscount +
+				", amountInvoice=" + amountInvoice +
+				", dateCreationInvoice=" + dateCreationInvoice +
+				", dateLastModificationInvoice=" + dateLastModificationInvoice +
+				", archived=" + archived +
+				", invoiceDetails=" + invoiceDetails +
+				", supplier=" + supplier +
+				'}';
+	}
 	
 }

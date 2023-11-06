@@ -7,6 +7,7 @@ import tn.esprit.devops_project.services.Iservices.IInvoiceService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -31,7 +32,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/invoice/supplier/{supplierId}")
-    public List<Invoice> getInvoicesBySupplier(@PathVariable Long supplierId) {
+    public Set<Invoice> getInvoicesBySupplier(@PathVariable Long supplierId) {
         return invoiceService.getInvoicesBySupplier(supplierId);
     }
 

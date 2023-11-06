@@ -51,8 +51,8 @@ StockServiceImpl stockService;
             @DatabaseSetup("/data-set/stock-data.xml")
     })
     void addProduct() {
-
         Stock stock = stockRepository.findById(1L).orElseThrow(() -> new NullPointerException("stock not found"));
+        assertNotNull(stock);
         log.info("object: ----------- " + stock.toString());
         Product product = new Product();
         product.setTitle("prod1");
@@ -61,29 +61,11 @@ StockServiceImpl stockService;
         product.setCategory(ProductCategory.ELECTRONICS);
         product.setStock(stock);
         productService.addProduct(product,1L);
+        assertThrows(NullPointerException.class, () -> {productService.addProduct(product,10L);});
 
         assertEquals(1,stock.getProducts().size()  );
 
     }
-
-  /*  @Test
-    @DatabaseSetups({
-            @DatabaseSetup("/data-set/product-data.xml"),
-            @DatabaseSetup("/data-set/stock-data.xml")
-    })
-
-    void testRetrieveStockByIdNotFound() {
-        Stock stock = stockRepository.findById(100L).orElseThrow(() -> new NullPointerException("stock not found"));
-        assertNull(stock);
-       *//* Throwable exception = assertThrows(NullPointerException.class, () -> {*//*
-           productService.retreiveProductStock(999L);
-
-
-    }*/
-
-
-
-
     @Test
     @DatabaseSetup("/data-set/product-data.xml")
     void retrieveProduct() {
@@ -95,7 +77,6 @@ StockServiceImpl stockService;
         assertEquals(ProductCategory.ELECTRONICS, product.getCategory());
 
     }
-
     @Test
     @DatabaseSetup("/data-set/product-data.xml")
     void retreiveAllProduct() {
@@ -103,7 +84,6 @@ StockServiceImpl stockService;
         assertEquals(allProducts.size(), 2);
 
     }
-
     @Test
     @DatabaseSetup("/data-set/product-data.xml")
     void retrieveProductByCategory() {
@@ -111,7 +91,6 @@ StockServiceImpl stockService;
         assertNotNull(electronicsProducts);
         assertEquals(1, electronicsProducts.size());
     }
-
     @Test
     @DatabaseSetup("/data-set/product-data.xml")
     void deleteProduct() {
@@ -119,24 +98,13 @@ StockServiceImpl stockService;
         productService.deleteProduct(2L);
         List<Product> deleteproduct =productService.retreiveAllProduct();
         assertEquals(new ArrayList<>(), deleteproduct);
-
-
     }
-
-
-
-
-
-
     @Test
     @DatabaseSetups({
             @DatabaseSetup("/data-set/product-data.xml"),
             @DatabaseSetup("/data-set/stock-data.xml")
     })
     void retreiveProductStock() {
-      /*  List<Product> productsInStock = productService.retreiveProductStock(1L);
-        assertNotNull(productsInStock);
-        assertEquals(3, productsInStock.size());*/
         Stock stock = stockRepository.findById(1L).orElse(null);
         assertNotNull(stock);
         List<Product> products = productService.retreiveProductStock(stock.getIdStock());
